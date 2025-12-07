@@ -1,5 +1,6 @@
 """FastAPI приложение"""
 import asyncio
+import logging
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.responses import JSONResponse
 from typing import Dict, Any, Optional
@@ -12,6 +13,12 @@ from src.core.critic import Critic
 from src.core.synthesizer import Synthesizer
 from src.agents.agent_factory import AgentFactory
 from src.models import AgentType
+
+# Настройка логирования
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
 app = FastAPI(
     title=settings.api_title,
@@ -159,18 +166,25 @@ async def get_review_report(task_id: UUID, format: str = "markdown") -> Dict[str
 
 async def process_review(task_id: UUID):
     """Обработка анализа документации"""
+    import logging
+    logger = logging.getLogger(__name__)
+    
     try:
         task = tasks_storage[task_id]
         task.status = TaskStatus.IN_PROGRESS
+        logger.info(f"Starting review for task {task_id}")
         
         # 1. Директор анализирует задачу
         director_instance = get_director()
+        logger.info("Director initialized, analyzing task...")
         task_analysis = await director_instance.analyze_task(task)
         
         # 2. Директор создает стратегию
+        logger.info("Creating strategy...")
         strategy = await director_instance.create_strategy(task, task_analysis)
         
         # 3. Запускаем агентов параллельно
+        logger.info(f"Starting {len(strategy.agents_to_use)} agents...")
         agent_tasks = []
         agent_results = {}
         
@@ -185,10 +199,12 @@ async def process_review(task_id: UUID):
             agent_results[agent_type] = result
         
         # 4. Критик валидирует результаты
+        logger.info("Validating results with critic...")
         critic_instance = get_critic()
         validation_result = await critic_instance.validate(agent_results)
         
         # 5. Синтезатор создает финальный отчет
+        logger.info("Synthesizing final report...")
         synthesizer_instance = get_synthesizer()
         review_result = await synthesizer_instance.synthesize(
             str(task_id),
@@ -199,10 +215,13 @@ async def process_review(task_id: UUID):
         # Сохраняем результат
         results_storage[task_id] = review_result
         task.status = TaskStatus.COMPLETED
+        logger.info(f"Review completed for task {task_id}")
         
     except Exception as e:
-        task.status = TaskStatus.FAILED
-        raise e
+        logger.error(f"Error processing review {task_id}: {e}", exc_info=True)
+        if task_id in tasks_storage:
+            tasks_storage[task_id].status = TaskStatus.FAILED
+        # Не пробрасываем исключение, чтобы не падал background task
 
 
 if __name__ == "__main__":
