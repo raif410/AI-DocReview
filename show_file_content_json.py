@@ -57,7 +57,16 @@ def show_file_content_json():
     }
     
     # Конвертируем в JSON строку (с правильным экранированием)
+    # ensure_ascii=False сохраняет Unicode символы
+    # indent=2 делает JSON читаемым
     json_string = json.dumps(request_body, ensure_ascii=False, indent=2)
+    
+    # Проверяем валидность JSON
+    try:
+        json.loads(json_string)
+    except json.JSONDecodeError as e:
+        print(f"\n⚠️  ВНИМАНИЕ: Обнаружена проблема с JSON: {e}")
+        print("   Попробуйте использовать скрипт send_review_request.py вместо Swagger UI")
     
     print("-" * 70)
     print("\n📄 JSON ДЛЯ КОПИРОВАНИЯ В SWAGGER UI:\n")
