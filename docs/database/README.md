@@ -33,6 +33,8 @@ python scripts/tools/view_db_data.py
 
 Подробнее: [VIEW_DATABASE.md](VIEW_DATABASE.md)
 
+**Если получаете ошибку "ModuleNotFoundError"** - см. [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+
 ## Быстрый старт
 
 ### 1. Установка зависимостей
