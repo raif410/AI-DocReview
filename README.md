@@ -238,8 +238,7 @@ python -c "import requests; print(requests.get('http://localhost:8000/health').j
 
 ### Презентации
 
-- [Презентация для HighLoad++ 2024](docs/presentation/highload-2024.md) - Полная версия
-- [Краткая версия презентации](docs/presentation/highload-2024-short.md)
+- [Презентация для HighLoad++ 2024](docs/presentation/highload-2024.md)
 - [Инструкции по использованию презентаций](docs/presentation/README.md)
 
 ## Пример использования
