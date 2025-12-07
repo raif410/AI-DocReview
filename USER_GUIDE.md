@@ -77,16 +77,81 @@ python test_api_quick.py
 
 **Endpoint:** `POST /api/v1/review/start`
 
-**Запрос:**
-```json
-{
-  "document": "# Ваша документация здесь...",
-  "document_type": "markdown",
-  "context": {
-    "project_type": "microservices",
-    "requirements": ["security", "scalability"]
-  }
-}
+#### Как загрузить документацию?
+
+**Вариант 1: Чтение из файла (Python)**
+```python
+# Чтение из одного файла
+with open("docs/architecture.md", "r", encoding="utf-8") as f:
+    document = f.read()
+
+# Или чтение нескольких файлов
+documents = []
+for file_path in ["docs/architecture.md", "docs/api.md", "docs/security.md"]:
+    with open(file_path, "r", encoding="utf-8") as f:
+        documents.append(f.read())
+document = "\n\n".join(documents)  # Объединяем файлы
+```
+
+**Вариант 2: Прямая строка**
+```python
+document = """
+# Архитектура системы
+
+## Компоненты
+- API Gateway
+- Database
+- Cache
+"""
+```
+
+**Вариант 3: Чтение из директории**
+```python
+import os
+from pathlib import Path
+
+# Читаем все .md файлы из директории
+docs_dir = Path("docs")
+document = ""
+for md_file in docs_dir.glob("**/*.md"):
+    document += f"\n\n# {md_file.name}\n\n"
+    document += md_file.read_text(encoding="utf-8")
+```
+
+**Вариант 4: Из переменной окружения или конфига**
+```python
+import os
+document = os.getenv("DOCUMENTATION_CONTENT", "")
+# или
+from config import DOCUMENTATION_PATH
+with open(DOCUMENTATION_PATH, "r", encoding="utf-8") as f:
+    document = f.read()
+```
+
+#### Запрос к API
+
+```python
+import requests
+
+# Загружаем документацию (выберите один из вариантов выше)
+with open("my_documentation.md", "r", encoding="utf-8") as f:
+    document = f.read()
+
+# Отправляем запрос
+response = requests.post(
+    "http://localhost:8000/api/v1/review/start",
+    json={
+        "document": document,
+        "document_type": "markdown",
+        "context": {
+            "project_type": "microservices",
+            "requirements": ["security", "scalability"]
+        }
+    }
+)
+
+task_id = response.json()["task_id"]
+print(f"Task ID: {task_id}")
 ```
 
 **Ответ:**
@@ -155,11 +220,15 @@ import time
 
 BASE_URL = "http://localhost:8000"
 
+# Загружаем документацию из файла
+with open("my_documentation.md", "r", encoding="utf-8") as f:
+    document = f.read()
+
 # 1. Запуск анализа
 response = requests.post(
     f"{BASE_URL}/api/v1/review/start",
     json={
-        "document": "# Архитектура системы\n\n## Компоненты\n- API Gateway",
+        "document": document,  # Используем загруженную документацию
         "document_type": "markdown",
         "context": {"project_type": "microservices"}
     }
