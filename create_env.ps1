@@ -1,9 +1,10 @@
 # Script to create .env file
 # This script creates a .env file with template values
-# Replace 'your-api-key-here' with your actual OpenAI API key
+# Replace 'your-api-key-here' with your actual API key (OpenAI or DeepSeek)
 
 $envContent = @"
 OPENAI_API_KEY=your-api-key-here
+OPENAI_BASE_URL=https://api.deepseek.com
 API_HOST=0.0.0.0
 API_PORT=8000
 DEBUG=true

@@ -19,11 +19,12 @@ class Settings(BaseSettings):
     api_port: int = 8000
     debug: bool = False
     
-    # OpenAI
+    # OpenAI / DeepSeek
     openai_api_key: Optional[str] = None
     openai_model: str = "gpt-4"
     openai_temperature: float = 0.3
     openai_max_tokens: int = 2000
+    openai_base_url: Optional[str] = None  # Для DeepSeek: https://api.deepseek.com
     
     # Database
     database_url: str = "postgresql://postgres:postgres@localhost:5432/docreview"

@@ -10,6 +10,8 @@ class AIClient:
     
     def __init__(self):
         api_key = settings.openai_api_key or os.getenv("OPENAI_API_KEY")
+        base_url = settings.openai_base_url or os.getenv("OPENAI_BASE_URL")
+        
         if not api_key:
             # В режиме разработки можно продолжить без ключа (для тестирования структуры)
             import warnings
@@ -17,9 +19,20 @@ class AIClient:
             self.client = None
             self._api_key_set = False
         else:
-            self.client = OpenAI(api_key=api_key)
+            # Поддержка DeepSeek API (совместим с OpenAI API)
+            client_kwargs = {"api_key": api_key}
+            if base_url:
+                client_kwargs["base_url"] = base_url
+            
+            self.client = OpenAI(**client_kwargs)
             self._api_key_set = True
-        self.model = settings.openai_model
+        
+        # Для DeepSeek используем модель deepseek-chat, если base_url указан
+        if base_url and "deepseek" in base_url.lower():
+            self.model = "deepseek-chat"
+        else:
+            self.model = settings.openai_model
+        
         self.temperature = settings.openai_temperature
         self.max_tokens = settings.openai_max_tokens
     

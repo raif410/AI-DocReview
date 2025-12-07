@@ -31,13 +31,28 @@ if not api_key:
 print(f"✅ API ключ найден (длина: {len(api_key)} символов)")
 print(f"   Первые 10 символов: {api_key[:10]}...")
 
+# Проверяем base_url для DeepSeek
+base_url = os.getenv("OPENAI_BASE_URL") or None
+try:
+    from src.config import settings
+    if settings.openai_base_url:
+        base_url = settings.openai_base_url
+except:
+    pass
+
 # Пробуем сделать тестовый запрос
 try:
-    print("\n🧪 Тестирую подключение к OpenAI API...")
-    client = OpenAI(api_key=api_key)
+    if base_url and "deepseek" in base_url.lower():
+        print(f"\n🧪 Тестирую подключение к DeepSeek API ({base_url})...")
+        client = OpenAI(api_key=api_key, base_url=base_url)
+        model = "deepseek-chat"
+    else:
+        print("\n🧪 Тестирую подключение к OpenAI API...")
+        client = OpenAI(api_key=api_key)
+        model = "gpt-3.5-turbo"
     
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model=model,
         messages=[
             {"role": "user", "content": "Say 'Hello' if you can read this."}
         ],
