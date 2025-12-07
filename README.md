@@ -24,6 +24,9 @@
 │   │   ├── uec-specialist-agent.md   # Спецификация УЭК-специалиста
 │   │   ├── support-specialist-agent.md # Спецификация специалиста сопровождения
 │   │   └── architect-agent.md        # Спецификация архитектора
+│   ├── presentation/                  # Презентации
+│   │   ├── highload-2024.md          # Презентация для HighLoad++
+│   │   └── highload-2024-short.md     # Краткая версия
 │   ├── architecture/                  # Архитектурная документация
 │   └── api/                           # API документация
 ├── src/                               # Исходный код
@@ -95,6 +98,12 @@ python src/agents/system_analyst/main.py
 - [УЭК-специалист](docs/analytics/uec-specialist-agent.md)
 - [Специалист сопровождения](docs/analytics/support-specialist-agent.md)
 - [Архитектор](docs/analytics/architect-agent.md)
+
+### Презентации
+
+- [Презентация для HighLoad++ 2024](docs/presentation/highload-2024.md) - Полная версия
+- [Краткая версия презентации](docs/presentation/highload-2024-short.md)
+- [Инструкции по использованию презентаций](docs/presentation/README.md)
 
 ## Разработка
 
