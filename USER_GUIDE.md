@@ -422,6 +422,7 @@ python test_example.py
 - **Настройка API ключа**: [SETUP_API_KEY.md](SETUP_API_KEY.md)
 - **Запуск сервера**: [START_SERVER.md](START_SERVER.md)
 - **Работа с БД**: [docs/database/README.md](docs/database/README.md)
+- **Примеры загрузки документации**: [examples/load_documentation.py](examples/load_documentation.py)
 
 ---
 
