@@ -19,10 +19,31 @@ app = FastAPI(
     debug=settings.debug
 )
 
-# Инициализация компонентов
-director = Director()
-critic = Critic()
-synthesizer = Synthesizer()
+# Инициализация компонентов (ленивая инициализация)
+director = None
+critic = None
+synthesizer = None
+
+def get_director():
+    """Ленивая инициализация директора"""
+    global director
+    if director is None:
+        director = Director()
+    return director
+
+def get_critic():
+    """Ленивая инициализация критика"""
+    global critic
+    if critic is None:
+        critic = Critic()
+    return critic
+
+def get_synthesizer():
+    """Ленивая инициализация синтезатора"""
+    global synthesizer
+    if synthesizer is None:
+        synthesizer = Synthesizer()
+    return synthesizer
 
 # Хранилище задач (в продакшене использовалась бы БД)
 tasks_storage: Dict[UUID, ReviewTask] = {}
@@ -143,10 +164,11 @@ async def process_review(task_id: UUID):
         task.status = TaskStatus.IN_PROGRESS
         
         # 1. Директор анализирует задачу
-        task_analysis = await director.analyze_task(task)
+        director_instance = get_director()
+        task_analysis = await director_instance.analyze_task(task)
         
         # 2. Директор создает стратегию
-        strategy = await director.create_strategy(task, task_analysis)
+        strategy = await director_instance.create_strategy(task, task_analysis)
         
         # 3. Запускаем агентов параллельно
         agent_tasks = []
@@ -163,10 +185,12 @@ async def process_review(task_id: UUID):
             agent_results[agent_type] = result
         
         # 4. Критик валидирует результаты
-        validation_result = await critic.validate(agent_results)
+        critic_instance = get_critic()
+        validation_result = await critic_instance.validate(agent_results)
         
         # 5. Синтезатор создает финальный отчет
-        review_result = await synthesizer.synthesize(
+        synthesizer_instance = get_synthesizer()
+        review_result = await synthesizer_instance.synthesize(
             str(task_id),
             agent_results,
             validation_result

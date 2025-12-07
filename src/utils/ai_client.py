@@ -11,8 +11,14 @@ class AIClient:
     def __init__(self):
         api_key = settings.openai_api_key or os.getenv("OPENAI_API_KEY")
         if not api_key:
-            raise ValueError("OPENAI_API_KEY не установлен")
-        self.client = OpenAI(api_key=api_key)
+            # В режиме разработки можно продолжить без ключа (для тестирования структуры)
+            import warnings
+            warnings.warn("OPENAI_API_KEY not set. AI features will not work.")
+            self.client = None
+            self._api_key_set = False
+        else:
+            self.client = OpenAI(api_key=api_key)
+            self._api_key_set = True
         self.model = settings.openai_model
         self.temperature = settings.openai_temperature
         self.max_tokens = settings.openai_max_tokens
@@ -24,6 +30,10 @@ class AIClient:
         temperature: Optional[float] = None
     ) -> str:
         """Выполнить анализ через LLM"""
+        if not self._api_key_set or self.client is None:
+            # Возвращаем мок-ответ для тестирования
+            return f"[MOCK] Analysis of prompt: {prompt[:100]}..."
+        
         messages = []
         if system_prompt:
             messages.append({"role": "system", "content": system_prompt})
