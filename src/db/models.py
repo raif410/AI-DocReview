@@ -35,7 +35,7 @@ class IssueDB(Base):
     recommendation = Column(Text, nullable=False)
     category = Column(String(100), nullable=False)
     location = Column(String(500), nullable=True)
-    metadata = Column(JSON, default=dict)
+    issue_metadata = Column(JSON, default=dict)  # Переименовано из metadata, т.к. metadata зарезервировано в SQLAlchemy
     created_at = Column(DateTime, default=datetime.utcnow)
 
 

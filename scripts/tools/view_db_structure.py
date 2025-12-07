@@ -1,6 +1,13 @@
 """Скрипт для просмотра структуры базы данных"""
 import sys
 import io
+import os
+from pathlib import Path
+
+# Добавляем корень проекта в путь
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
+
 from sqlalchemy import inspect
 from src.db.session import engine, SessionLocal
 from src.db.models import ReviewTaskDB, IssueDB, ReviewResultDB

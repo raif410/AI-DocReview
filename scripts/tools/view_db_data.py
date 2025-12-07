@@ -1,7 +1,14 @@
 """Скрипт для просмотра данных из базы данных"""
 import sys
 import io
+import os
+from pathlib import Path
 from datetime import datetime
+
+# Добавляем корень проекта в путь
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
+
 from sqlalchemy import desc, func
 from src.db.session import SessionLocal
 from src.db.models import ReviewTaskDB, IssueDB, ReviewResultDB
