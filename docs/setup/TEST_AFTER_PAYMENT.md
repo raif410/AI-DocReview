@@ -12,11 +12,28 @@ python scripts/tools/test_openai_key.py
 
 ### 2. Проверка API запроса
 
-```bash
-python scripts/cli/send_review_request.py
-```
+Используйте Swagger UI или Python:
 
-Должен вернуться: `✅ Запрос успешен!`
+**Swagger UI:**
+1. Откройте http://localhost:8000/docs
+2. Найдите `POST /api/v1/review/start`
+3. Заполните поля и отправьте запрос
+
+**Python:**
+```python
+import requests
+
+response = requests.post(
+    "http://localhost:8000/api/v1/review/start",
+    json={
+        "document": "# Тест\n\nЭто тестовая документация.",
+        "document_type": "markdown",
+        "context": {}
+    }
+)
+
+print(f"Task ID: {response.json()['task_id']}")
+```
 
 ## 🔄 Если сервер не перезапущен
 
@@ -31,8 +48,12 @@ python scripts/cli/send_review_request.py
 ## 🚀 Тестирование через Swagger UI
 
 1. Откройте http://localhost:8000/docs
-2. Используйте `python scripts/cli/show_file_content_json.py` для получения JSON
-3. Отправьте запрос через Swagger UI
+2. Найдите `POST /api/v1/review/start`
+3. Заполните поля:
+   - `document`: вставьте текст документации
+   - `document_type`: `"markdown"`
+   - `context`: `{}`
+4. Нажмите "Execute"
 
 ## ✅ Ожидаемый результат
 
@@ -42,4 +63,3 @@ python scripts/cli/send_review_request.py
 - ✅ Анализ документации выполняется с реальным AI
 
 Готово! 🎉
-

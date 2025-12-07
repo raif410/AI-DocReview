@@ -22,10 +22,6 @@
 │   └── config.py                # Конфигурация
 │
 ├── scripts/                     # Вспомогательные скрипты
-│   ├── cli/                     # CLI скрипты для пользователей
-│   │   ├── show_file_content_json.py
-│   │   ├── send_review_request.py
-│   │   └── review_from_folder.py
 │   ├── tools/                   # Утилиты и тесты
 │   │   ├── test_example.py
 │   │   ├── test_api_quick.py
@@ -62,11 +58,6 @@
 **Важно:** Все скрипты запускаются из корня проекта!
 
 ```bash
-# CLI скрипты
-python scripts/cli/show_file_content_json.py
-python scripts/cli/send_review_request.py
-python scripts/cli/review_from_folder.py
-
 # Утилиты и тесты
 python scripts/tools/check_project.py
 python scripts/tools/test_api_quick.py
