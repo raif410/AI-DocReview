@@ -1,4 +1,4 @@
-# 🔧 Исправление ошибки JSON в Swagger UI
+﻿# 🔧 Исправление ошибки JSON в Swagger UI
 
 ## ❌ Ошибка, которую вы получили
 
@@ -18,7 +18,7 @@
 
 1. **Запустите новый скрипт:**
    ```bash
-   python show_file_content_json.py
+   python scripts/cli/show_file_content_json.py
    ```
 
 2. **Скрипт выведет правильный JSON:**
@@ -68,7 +68,7 @@
 ### Шаг 1: Запустите скрипт
 
 ```bash
-python show_file_content_json.py
+python scripts/cli/show_file_content_json.py
 ```
 
 ### Шаг 2: Скопируйте JSON
@@ -121,7 +121,7 @@ python show_file_content_json.py
 
 ```bash
 # 1. Запустите скрипт с JSON форматом
-python show_file_content_json.py
+python scripts/cli/show_file_content_json.py
 
 # 2. Скопируйте весь JSON (от { до })
 

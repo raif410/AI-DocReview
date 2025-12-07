@@ -1,4 +1,4 @@
-# Запуск DocReview AI Server
+﻿# Запуск DocReview AI Server
 
 ## ✅ API ключ настроен!
 
@@ -38,7 +38,7 @@ python -m src.main
 Запустите тестовый скрипт:
 
 ```bash
-python test_example.py
+python scripts/tools/test_example.py
 ```
 
 Или вручную через curl:

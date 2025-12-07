@@ -1,4 +1,4 @@
-# 🔧 Настройка DeepSeek API
+﻿# 🔧 Настройка DeepSeek API
 
 ## ✅ API ключ настроен!
 
@@ -16,7 +16,7 @@ OPENAI_BASE_URL=https://api.deepseek.com
 
 Запустите тест:
 ```bash
-python test_openai_key.py
+python scripts/tools/test_openai_key.py
 ```
 
 Должен вернуться: `✅ API ключ работает!`

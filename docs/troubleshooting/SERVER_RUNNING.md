@@ -1,4 +1,4 @@
-# ✅ Сервер работает нормально!
+﻿# ✅ Сервер работает нормально!
 
 ## 📊 Что вы видите
 
@@ -32,7 +32,7 @@ INFO:     Application startup complete.
 
 В новом терминале:
 ```bash
-python send_review_request.py
+python scripts/cli/send_review_request.py
 ```
 
 Если запрос проходит - сервер работает!
@@ -45,10 +45,10 @@ python send_review_request.py
 
 ```bash
 # Отправка запроса на анализ
-python send_review_request.py
+python scripts/cli/send_review_request.py
 
 # Или полный цикл с ожиданием результатов
-python review_from_folder.py
+python scripts/cli/review_from_folder.py
 ```
 
 ## ⚠️ Важно

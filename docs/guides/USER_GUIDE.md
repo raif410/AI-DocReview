@@ -1,4 +1,4 @@
-# 📖 Руководство пользователя DocReview AI
+﻿# 📖 Руководство пользователя DocReview AI
 
 Полное руководство по использованию системы анализа технической документации.
 
@@ -41,7 +41,7 @@
 # Установите зависимости
 pip install -r requirements.txt
 
-# Настройте API ключ (см. SETUP_API_KEY.md)
+# Настройте API ключ (см. ../setup/SETUP_API_KEY.md)
 # Создайте .env файл с OPENAI_API_KEY
 ```
 
@@ -57,10 +57,10 @@ python run.py
 
 ```bash
 # Быстрая проверка
-python check_project.py
+python scripts/tools/check_project.py
 
 # Или проверка API
-python test_api_quick.py
+python scripts/tools/test_api_quick.py
 ```
 
 ---
@@ -286,7 +286,7 @@ curl "http://localhost:8000/api/v1/review/$TASK_ID/report?format=markdown"
 
 ```bash
 # Запустите готовый пример
-python test_example.py
+python scripts/tools/test_example.py
 ```
 
 ### Пример 4: Использование через браузер (Swagger UI)
@@ -421,9 +421,9 @@ python test_example.py
 ## Полезные ссылки
 
 - **Быстрый старт**: [QUICKSTART.md](QUICKSTART.md)
-- **Проверка работоспособности**: [CHECK_ME.md](CHECK_ME.md)
-- **Настройка API ключа**: [SETUP_API_KEY.md](SETUP_API_KEY.md)
-- **Запуск сервера**: [START_SERVER.md](START_SERVER.md)
+- **Проверка работоспособности**: [../troubleshooting/CHECK_ME.md](../troubleshooting/CHECK_ME.md)
+- **Настройка API ключа**: [../setup/SETUP_API_KEY.md](../setup/SETUP_API_KEY.md)
+- **Запуск сервера**: [../setup/START_SERVER.md](../setup/START_SERVER.md)
 - **Работа с БД**: [docs/database/README.md](docs/database/README.md)
 - **Примеры загрузки документации**: [examples/load_documentation.py](examples/load_documentation.py)
 
@@ -433,7 +433,7 @@ python test_example.py
 
 Если у вас возникли вопросы или проблемы:
 
-1. Проверьте [HOW_TO_CHECK.md](HOW_TO_CHECK.md) для диагностики
+1. Проверьте [../troubleshooting/HOW_TO_CHECK.md](../troubleshooting/HOW_TO_CHECK.md) для диагностики
 2. Посмотрите примеры в `test_example.py`
 3. Изучите документацию API в Swagger UI: http://localhost:8000/docs
 

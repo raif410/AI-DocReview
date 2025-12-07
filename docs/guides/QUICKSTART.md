@@ -1,4 +1,4 @@
-# Быстрый старт DocReview AI
+﻿# Быстрый старт DocReview AI
 
 ## Требования
 
@@ -99,7 +99,7 @@ curl http://localhost:8000/api/v1/review/{task_id}/report?format=markdown
 Запустите тестовый скрипт:
 
 ```bash
-python test_example.py
+python scripts/tools/test_example.py
 ```
 
 ## Документация API

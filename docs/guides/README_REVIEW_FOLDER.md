@@ -1,4 +1,4 @@
-# 📁 Анализ документации из папки C:\review
+﻿# 📁 Анализ документации из папки C:\review
 
 ## Быстрый старт
 
@@ -8,7 +8,7 @@
 
 2. **Запустите скрипт:**
    ```bash
-   python review_from_folder.py
+   python scripts/cli/review_from_folder.py
    ```
 
 3. **Результаты** будут сохранены в `C:\review\review_report.md`
@@ -29,7 +29,7 @@
 #             C:\review\api.md
 
 # 2. Запустите скрипт
-python review_from_folder.py
+python scripts/cli/review_from_folder.py
 
 # 3. Дождитесь завершения
 # 4. Откройте C:\review\review_report.md

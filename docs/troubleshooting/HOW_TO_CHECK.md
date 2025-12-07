@@ -1,11 +1,11 @@
-# Как проверить, что проект работает
+﻿# Как проверить, что проект работает
 
 ## Быстрая проверка (рекомендуется)
 
 Запустите скрипт комплексной проверки:
 
 ```bash
-python check_project.py
+python scripts/tools/check_project.py
 ```
 
 Скрипт проверит:
@@ -43,7 +43,7 @@ python -c "import requests; print(requests.get('http://localhost:8000/health').j
 ### 3. Быстрая проверка API
 
 ```bash
-python test_api_quick.py
+python scripts/tools/test_api_quick.py
 ```
 
 Проверяет все основные endpoints за несколько секунд.
@@ -51,7 +51,7 @@ python test_api_quick.py
 ### 4. Полный тест рабочего процесса
 
 ```bash
-python test_example_simple.py
+python scripts/tools/test_example.py
 ```
 
 Создает задачу анализа и проверяет её статус.

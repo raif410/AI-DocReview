@@ -1,11 +1,11 @@
-# ✅ Проверка работоспособности проекта
+﻿# ✅ Проверка работоспособности проекта
 
 ## Самый простой способ (рекомендуется)
 
 Запустите один скрипт, который проверит всё автоматически:
 
 ```bash
-python check_project.py
+python scripts/tools/check_project.py
 ```
 
 Этот скрипт проверит:
@@ -23,7 +23,7 @@ python check_project.py
 Если сервер уже запущен и нужно только проверить API:
 
 ```bash
-python test_api_quick.py
+python scripts/tools/test_api_quick.py
 ```
 
 **Время проверки:** ~2-3 секунды
@@ -34,7 +34,7 @@ python test_api_quick.py
 
 Проект работает! Можете использовать API:
 - Документация API: http://localhost:8000/docs
-- Пример использования: `python test_example_simple.py`
+- Пример использования: `python scripts/tools/test_example.py`
 
 ### Если есть ошибки ❌
 

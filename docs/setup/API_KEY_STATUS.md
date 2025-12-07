@@ -1,4 +1,4 @@
-# 🔑 Статус API ключа OpenAI
+﻿# 🔑 Статус API ключа OpenAI
 
 ## ⚠️ Проблема с API ключом
 
@@ -47,7 +47,7 @@ PermissionDeniedError: Error code: 403
 
 Запустите:
 ```bash
-python test_openai_key.py
+python scripts/tools/test_openai_key.py
 ```
 
 Это покажет текущий статус API ключа.

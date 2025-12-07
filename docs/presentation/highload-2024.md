@@ -733,9 +733,9 @@ async def validate_results(results):
 
 #### Руководства для пользователей
 
-- **[USER_GUIDE.md](../USER_GUIDE.md)** - Полное руководство пользователя
-- **[QUICKSTART.md](../QUICKSTART.md)** - Быстрый старт
-- **[CHECK_ME.md](../CHECK_ME.md)** - Проверка работоспособности
+- **[USER_GUIDE.md](../guides/USER_GUIDE.md)** - Полное руководство пользователя
+- **[QUICKSTART.md](../guides/QUICKSTART.md)** - Быстрый старт
+- **[CHECK_ME.md](../troubleshooting/CHECK_ME.md)** - Проверка работоспособности
 
 #### Техническая документация
 
