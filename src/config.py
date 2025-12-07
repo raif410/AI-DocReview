@@ -41,8 +41,9 @@ class Settings(BaseSettings):
     
     class Config:
         env_file = ".env"
-        env_file_encoding = "utf-8"
+        env_file_encoding = "utf-8-sig"  # Поддержка BOM
         case_sensitive = False
+        extra = "ignore"  # Игнорировать лишние поля
 
 
 settings = Settings()
