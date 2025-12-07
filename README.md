@@ -161,6 +161,8 @@ python src/agents/analyst/main.py
 
 ## Документация
 
+### Аналитическая документация
+
 Подробная аналитическая документация по каждому компоненту находится в директории `docs/analytics/`:
 
 ### Ядро системы
@@ -173,6 +175,13 @@ python src/agents/analyst/main.py
 - [Архитектор](docs/analytics/architect-agent.md)
 - [DevSecOps](docs/analytics/devsecops-agent.md)
 - [DevOps/SRE](docs/analytics/devops-sre-agent.md)
+
+### Работа с базой данных
+
+- [Быстрый старт: Добавление поля](docs/database/QUICK_START.md) - Минимальная инструкция
+- [Полная инструкция по добавлению поля](docs/database/ADDING_FIELD.md) - Детальное руководство
+- [Пример: Добавление user_email](docs/database/EXAMPLE_USER_EMAIL.md) - Полный пример с кодом
+- [Общая документация по БД](docs/database/README.md) - Обзор работы с БД
 
 ### Презентации
 
