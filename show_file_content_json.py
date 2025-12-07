@@ -1,6 +1,7 @@
-"""Скрипт для показа содержимого файла из C:\review для копирования в Swagger UI"""
+"""Скрипт для показа содержимого файла из C:\review в правильном JSON формате для Swagger UI"""
 import sys
 import io
+import json
 from pathlib import Path
 
 # Настройка кодировки для Windows
@@ -10,8 +11,8 @@ if sys.platform == 'win32':
 
 REVIEW_FOLDER = r"C:\review"
 
-def show_file_content():
-    """Показывает содержимое файлов из C:\review"""
+def show_file_content_json():
+    """Показывает содержимое файлов из C:\review в правильном JSON формате"""
     folder = Path(REVIEW_FOLDER)
     
     if not folder.exists():
@@ -29,10 +30,8 @@ def show_file_content():
         return
     
     print("=" * 70)
-    print("Содержимое файлов из C:\\review")
+    print("Содержимое файлов из C:\\review (JSON формат для Swagger UI)")
     print("=" * 70)
-    print("\n📋 Скопируйте текст ниже и вставьте в поле 'document' в Swagger UI\n")
-    print("-" * 70)
     
     # Читаем все файлы
     documents = []
@@ -50,27 +49,35 @@ def show_file_content():
     # Объединяем все файлы
     document = "\n\n---\n\n".join(documents)
     
+    # Создаем правильный JSON объект
+    request_body = {
+        "document": document,
+        "document_type": "markdown",
+        "context": {}
+    }
+    
+    # Конвертируем в JSON строку (с правильным экранированием)
+    json_string = json.dumps(request_body, ensure_ascii=False, indent=2)
+    
     print("-" * 70)
-    print("\n📄 СОДЕРЖИМОЕ ДЛЯ КОПИРОВАНИЯ:\n")
+    print("\n📄 JSON ДЛЯ КОПИРОВАНИЯ В SWAGGER UI:\n")
     print("=" * 70)
-    print(document)
+    print(json_string)
     print("=" * 70)
     
-    print(f"\n✅ Размер: {len(document)} символов")
+    print(f"\n✅ Размер документации: {len(document)} символов")
     print(f"✅ Файлов: {len(all_files)}")
     print("\n💡 Инструкция:")
-    print("   1. Выделите весь текст выше (от '=' до '=')")
+    print("   1. Выделите весь JSON выше (от '{' до '}')")
     print("   2. Скопируйте (Ctrl+C)")
     print("   3. Откройте http://localhost:8000/docs")
     print("   4. Найдите POST /api/v1/review/start")
     print("   5. Нажмите 'Try it out'")
-    print("   6. Вставьте скопированный текст в поле 'document'")
-    print("   7. В поле 'document_type' введите: markdown")
+    print("   6. В поле 'Request body' выберите формат 'application/json'")
+    print("   7. Вставьте скопированный JSON (Ctrl+V)")
     print("   8. Нажмите 'Execute'")
-    print("\n⚠️  ВАЖНО: Если получили ошибку JSON, используйте:")
-    print("   python show_file_content_json.py")
-    print("   (Этот скрипт выведет правильный JSON формат)")
+    print("\n⚠️  ВАЖНО: Копируйте весь JSON объект целиком!")
 
 if __name__ == "__main__":
-    show_file_content()
+    show_file_content_json()
 
