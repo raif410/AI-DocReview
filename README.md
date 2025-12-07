@@ -99,9 +99,20 @@
 │   │   ├── architect/                 # Архитектор
 │   │   ├── devsecops/                 # DevSecOps
 │   │   └── devops_sre/                # DevOps/SRE
-│   ├── communication/                 # Межагентная коммуникация
-│   ├── orchestration/                 # Оркестрация агентов
-│   └── storage/                       # Хранилище данных
+│   ├── db/                            # Работа с базой данных
+│   │   ├── models.py                  # SQLAlchemy модели
+│   │   ├── session.py                # Сессии БД
+│   │   └── base.py                    # Базовый класс
+│   ├── api/                           # API endpoints
+│   ├── utils/                         # Утилиты
+│   ├── models.py                      # Pydantic модели
+│   └── config.py                      # Конфигурация
+├── alembic/                           # Миграции базы данных
+│   ├── versions/                      # Файлы миграций
+│   └── env.py                         # Конфигурация Alembic
+├── scripts/                           # Вспомогательные скрипты
+│   ├── init_db.py                     # Инициализация БД
+│   └── test_db_field.py               # Тест работы с полями
 ├── tests/                             # Тесты
 ├── config/                            # Конфигурационные файлы
 └── .gitignore                         # Игнорируемые файлы Git
